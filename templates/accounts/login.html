@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}登入{% endblock %}
+{% block content %}
+  <h1>登入</h1>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}">
+    {% if form.non_field_errors %}
+      <div class="msg error">{{ form.non_field_errors|join:" " }}</div>
+    {% endif %}
+    {% for field in form %}
+      <div class="field">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {{ field.errors }}
+      </div>
+    {% endfor %}
+    <button class="btn" type="submit">登入</button>
+  </form>
+  <p class="alt">還沒有帳號？<a href="{% url 'accounts:register' %}">立即註冊</a></p>
+{% endblock %}

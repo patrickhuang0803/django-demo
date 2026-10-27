@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}首頁{% endblock %}
+{% block content %}
+  <h1>首頁</h1>
+  {% if user.is_authenticated %}
+    <p>你好，<strong>{{ user.username }}</strong>！你已登入。</p>
+  {% else %}
+    <p>你目前尚未登入。</p>
+    <p><a href="{% url 'accounts:login' %}">登入</a> 或 <a href="{% url 'accounts:register' %}">註冊</a></p>
+  {% endif %}
+{% endblock %}
